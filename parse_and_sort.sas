@@ -1,7 +1,7 @@
-/* this is a fible attempt to do this in SAS */
-/* best thing is to create an API that will accept / return the file, but i don't know how to do this yet */
-/* i'm using SAS to do the string parsing and sorting */
-/* i'm also going to do this in Python */
+/* post the file to github */
+/* used github desktop to post the file or alternatively the github website itself*/
+/* also may need to be an API that the user calls */
+
 
 /* retrieve user file from github */
 filename userfile url "https://raw.githubusercontent.com/dkhots/interview/master/sample_user_file.csv";
@@ -32,10 +32,17 @@ run;
 
 /* need to return the file to the user */
 /* this should be API returning the file */
+/* using poor man's method */
 
+/* create CSV file from SAS data set and place into local github repo */
 
+proc export data=userfile_df_final
+   outfile="\\OM0766L4\Users\dkhots\Documents\GitHub\interview\userfile_parsed_sorted.csv"
+   dbms=dlm
+   replace;
+   delimiter=',';
+   putnames=no;
+run;
 
-
-
-
+/* then use git push to add the file back into public github */
 
